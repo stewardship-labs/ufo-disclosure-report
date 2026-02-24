@@ -1,7 +1,177 @@
 <!DOCTYPE html>
-<html>
-  <body>
-    <h1>UFO Disclosure Report</h1>
-    <p>Site under construction.</p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UFO Disclosure Report</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b0e14;
+      color: #e6e6e6;
+      line-height: 1.6;
+    }
+
+    /* HERO SECTION */
+    header {
+      background: url('images/hero.jpg') center/cover no-repeat;
+      padding: 140px 20px;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.45);
+    }
+
+    header h1, header p {
+      position: relative;
+      z-index: 2;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      text-shadow: 0 0 20px rgba(0,0,0,0.7);
+    }
+
+    header p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 60px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      border-left: 4px solid #4cc9f0;
+      padding-left: 10px;
+    }
+
+    /* AI BOX */
+    .ai-box {
+      background: #141821;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      border: 1px solid #2a2f3a;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 6px;
+      border: none;
+      background: #1c1f26;
+      color: white;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 12px 20px;
+      background: #4cc9f0;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      color: #000;
+      font-weight: bold;
+    }
+
+    /* SECTION BACKGROUND */
+    .bg-section {
+      background: url('images/background.jpg') center/cover no-repeat;
+      border-radius: 8px;
+      padding: 40px 20px;
+      margin-top: 40px;
+      background-attachment: fixed;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      opacity: 0.6;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>UFO Disclosure Report</h1>
+  <p>Tracking sightings, analyzing evidence, and uncovering the truth — powered by AI.</p>
+</header>
+
+<section>
+  <h2>Ask the Disclosure Engine</h2>
+  <p>Our AI agent analyzes sightings, documents, and historical cases. Ask anything.</p>
+
+  <div class="ai-box">
+    <textarea id="aiInput" placeholder="Ask about a sighting, document, or phenomenon..."></textarea>
+    <button onclick="askAI()">Analyze</button>
+    <div id="aiOutput" style="margin-top:20px;"></div>
+  </div>
+</section>
+
+<section class="bg-section">
+  <h2>Latest Findings</h2>
+  <p>Daily AI‑generated summaries of UFO activity, news, and declassified material.</p>
+
+  <ul>
+    <li>🛸 New sightings reported in the last 24 hours</li>
+    <li>📄 Declassified documents analyzed</li>
+    <li>🔍 AI‑generated case summaries</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Submit a Sighting</h2>
+  <p>Share your experience anonymously. Our AI will analyze and categorize it.</p>
+
+  <input type="text" placeholder="Location" />
+  <input type="text" placeholder="Date & Time" />
+  <textarea placeholder="Describe what you saw..."></textarea>
+  <button>Submit</button>
+</section>
+
+<section>
+  <h2>Join the Newsletter</h2>
+  <p>Weekly briefings, analysis, and exclusive reports.</p>
+
+  <input type="email" placeholder="Your email" />
+  <button>Subscribe</button>
+</section>
+
+<footer>
+  UFO Disclosure Report © 2026 — All Rights Reserved
+</footer>
+
+<script>
+  async function askAI() {
+    const input = document.getElementById("aiInput").value;
+    const output = document.getElementById("aiOutput");
+    output.innerHTML = "Analyzing...";
+
+    // Placeholder — you will replace with your backend later
+    output.innerHTML = "AI response will appear here once your API key is connected.";
+  }
+</script>
+
+</body>
 </html>
