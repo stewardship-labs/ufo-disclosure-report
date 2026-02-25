@@ -3,12 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>UFO Disclosure Report — AI-Powered Sightings & Analysis</title>
+
+  <!-- Meta Description -->
   <meta name="description" content="UFO Disclosure Report — tracking sightings, analyzing evidence, and uncovering the truth with AI.">
-  <title>UFO Disclosure Report — AI‑Powered Sightings & Analysis</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="UFO Disclosure Report">
+  <meta property="og:description" content="Tracking sightings, analyzing evidence, and uncovering the truth with AI.">
+  <meta property="og:image" content="https://yourdomain.com/images/hero.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://yourdomain.com/">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "UFO Disclosure Report",
+    "url": "https://yourdomain.com/"
+  }
+  </script>
+
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Inter', sans-serif;
       background: #0b0e14;
       color: #e6e6e6;
       line-height: 1.6;
@@ -108,10 +134,19 @@
       opacity: 0.6;
       font-size: 0.9rem;
     }
+
+    a {
+      color: #4cc9f0;
+      text-decoration: none;
+    }
   </style>
 </head>
 
 <body>
+
+<!-- Hidden ALT images for SEO -->
+<img src="images/hero.jpg" alt="Milky Way galaxy over clouds, NASA public domain" style="display:none;">
+<img src="images/background.jpg" alt="Orion Nebula, NASA public domain" style="display:none;">
 
 <header>
   <h1>UFO Disclosure Report</h1>
@@ -126,6 +161,10 @@
     <textarea id="aiInput" placeholder="Ask about a sighting, document, or phenomenon..."></textarea>
     <button onclick="askAI()">Analyze</button>
     <div id="aiOutput" style="margin-top:20px;"></div>
+
+    <div style="opacity:0.7; font-size:0.9rem; margin-top:10px;">
+      AI analysis coming soon — backend integration in progress.
+    </div>
   </div>
 </section>
 
@@ -138,6 +177,11 @@
     <li>📄 Declassified documents analyzed</li>
     <li>🔍 AI‑generated case summaries</li>
   </ul>
+
+  <p style="margin-top:20px;">
+    Read our latest article:  
+    <a href="articles/ufo-disclosure-timeline.html">2024–2026 UFO Disclosure Timeline</a>
+  </p>
 </section>
 
 <section>
@@ -168,7 +212,7 @@
     const output = document.getElementById("aiOutput");
     output.innerHTML = "Analyzing...";
 
-    // Placeholder — you will replace with your backend later
+    // Placeholder — backend integration coming soon
     output.innerHTML = "AI response will appear here once your API key is connected.";
   }
 </script>
