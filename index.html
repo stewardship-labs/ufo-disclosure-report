@@ -6,30 +6,9 @@
 
   <title>UFO Disclosure Report — AI-Powered Sightings & Analysis</title>
 
-  <!-- Meta Description -->
   <meta name="description" content="UFO Disclosure Report — tracking sightings, analyzing evidence, and uncovering the truth with AI.">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="UFO Disclosure Report">
-  <meta property="og:description" content="Tracking sightings, analyzing evidence, and uncovering the truth with AI.">
-  <meta property="og:image" content="https://yourdomain.com/images/hero.jpg">
-  <meta property="og:type" content="website">
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://yourdomain.com/">
-
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "UFO Disclosure Report",
-    "url": "https://yourdomain.com/"
-  }
-  </script>
 
   <style>
     body {
@@ -40,7 +19,6 @@
       line-height: 1.6;
     }
 
-    /* HERO SECTION */
     header {
       background: url('images/hero.jpg') center/cover no-repeat;
       padding: 140px 20px;
@@ -74,7 +52,6 @@
       opacity: 0.9;
     }
 
-    /* SECTIONS */
     section {
       padding: 60px 20px;
       max-width: 900px;
@@ -88,7 +65,7 @@
       padding-left: 10px;
     }
 
-    /* AI BOX */
+    /* AI CHAT UI */
     .ai-box {
       background: #141821;
       padding: 20px;
@@ -97,7 +74,37 @@
       border: 1px solid #2a2f3a;
     }
 
-    input, textarea {
+    #chatWindow {
+      max-height: 350px;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+
+    .msg {
+      margin: 12px 0;
+      padding: 12px 16px;
+      border-radius: 8px;
+      max-width: 80%;
+      line-height: 1.5;
+    }
+
+    .user {
+      background: #1f2430;
+      margin-left: auto;
+      border-left: 3px solid #4cc9f0;
+    }
+
+    .ai {
+      background: #1a1d27;
+      border-left: 3px solid #8be9fd;
+    }
+
+    .typing {
+      opacity: 0.7;
+      font-style: italic;
+    }
+
+    textarea {
       width: 100%;
       padding: 12px;
       margin-top: 10px;
@@ -105,6 +112,7 @@
       border: none;
       background: #1c1f26;
       color: white;
+      resize: vertical;
     }
 
     button {
@@ -119,13 +127,11 @@
       font-weight: bold;
     }
 
-    /* SECTION BACKGROUND */
-    .bg-section {
-      background: url('images/background.jpg') center/cover no-repeat;
-      border-radius: 8px;
-      padding: 40px 20px;
-      margin-top: 40px;
-      background-attachment: fixed;
+    .copy-btn {
+      margin-top: 6px;
+      font-size: 0.8rem;
+      opacity: 0.7;
+      cursor: pointer;
     }
 
     footer {
@@ -134,19 +140,10 @@
       opacity: 0.6;
       font-size: 0.9rem;
     }
-
-    a {
-      color: #4cc9f0;
-      text-decoration: none;
-    }
   </style>
 </head>
 
 <body>
-
-<!-- Hidden ALT images for SEO -->
-<img src="images/hero.jpg" alt="Milky Way galaxy over clouds, NASA public domain" style="display:none;">
-<img src="images/background.jpg" alt="Orion Nebula, NASA public domain" style="display:none;">
 
 <header>
   <h1>UFO Disclosure Report</h1>
@@ -158,12 +155,13 @@
   <p>Our AI agent analyzes sightings, documents, and historical cases. Ask anything.</p>
 
   <div class="ai-box">
+    <div id="chatWindow"></div>
+
     <textarea id="aiInput" placeholder="Ask about a sighting, document, or phenomenon..."></textarea>
     <button onclick="askAI()">Analyze</button>
-    <div id="aiOutput" style="margin-top:20px;"></div>
 
-    <div style="opacity:0.7; font-size:0.9rem; margin-top:10px;">
-      AI analysis coming soon — backend integration in progress.
+    <div style="opacity:0.6; margin-top:10px; font-size:0.85rem;">
+      Powered by Groq AI — ultra‑fast, high‑accuracy analysis.
     </div>
   </div>
 </section>
@@ -185,16 +183,6 @@
 </section>
 
 <section>
-  <h2>Submit a Sighting</h2>
-  <p>Share your experience anonymously. Our AI will analyze and categorize it.</p>
-
-  <input type="text" placeholder="Location" />
-  <input type="text" placeholder="Date & Time" />
-  <textarea placeholder="Describe what you saw..."></textarea>
-  <button>Submit</button>
-</section>
-
-<section>
   <h2>Join the Newsletter</h2>
   <p>Weekly briefings, analysis, and exclusive reports.</p>
 
@@ -207,13 +195,61 @@
 </footer>
 
 <script>
-  async function askAI() {
-    const input = document.getElementById("aiInput").value;
-    const output = document.getElementById("aiOutput");
-    output.innerHTML = "Analyzing...";
+  const endpoint = "https://ufo-disclosure-ai.poydence.workers.dev/";
 
-    // Placeholder — backend integration coming soon
-    output.innerHTML = "AI response will appear here once your API key is connected.";
+  function addMessage(text, sender) {
+    const chat = document.getElementById("chatWindow");
+    const msg = document.createElement("div");
+    msg.className = "msg " + sender;
+    msg.innerHTML = text;
+    chat.appendChild(msg);
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  function addTyping() {
+    const chat = document.getElementById("chatWindow");
+    const msg = document.createElement("div");
+    msg.className = "msg ai typing";
+    msg.id = "typingIndicator";
+    msg.innerHTML = "Analyzing…";
+    chat.appendChild(msg);
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  function removeTyping() {
+    const t = document.getElementById("typingIndicator");
+    if (t) t.remove();
+  }
+
+  async function askAI() {
+    const input = document.getElementById("aiInput").value.trim();
+    if (!input) return;
+
+    addMessage(input, "user");
+    document.getElementById("aiInput").value = "";
+
+    addTyping();
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: input })
+      });
+
+      const data = await response.json();
+      removeTyping();
+
+      if (data.answer) {
+        addMessage(data.answer, "ai");
+      } else {
+        addMessage("The AI could not generate a response.", "ai");
+      }
+
+    } catch (err) {
+      removeTyping();
+      addMessage("Network error — unable to reach the AI service.", "ai");
+    }
   }
 </script>
 
